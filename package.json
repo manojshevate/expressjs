@@ -1,0 +1,14 @@
+{
+  "name": "expressjs",
+  "version": "1.0.0",
+  "description": "Simple node.js app with express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Manoj Shevate",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
