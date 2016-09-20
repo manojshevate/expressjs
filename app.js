@@ -1,5 +1,8 @@
 var express = require('express');
 var app = express();
+const numCPUs = require('os').cpus().length;
+const cluster = require('cluster');
+
 
 app.use('/static',express.static(__dirname + '/public/'));
 
@@ -21,10 +24,25 @@ app.delete('/user', function (req, res) {
 });
 
 console.log('Current directory: ', __dirname);
+console.log('CPU count: ', numCPUs);
+
+
+if (cluster.isMaster) {
+	// FOR workers
+	for (var i = numCPUs; i >= 0; i--) {
+		cluster.fork();
+	}
+	cluster.on('exit', (worker, code, signal) => {
+    	console.log(`worker ${worker.process.pid} died`);
+    });
+    
+} else {
+	// Start Web server
+	app.listen(3000, function () {
+	  console.log('Example app listening on port 3000!');
+	});
+}
 
 
 
-// Start Web server
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
+
