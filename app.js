@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 
-app.use(express.static('public'));
+app.use('/static',express.static(__dirname + '/public/'));
 
 // Routing
 app.get('/', function (req, res) {
@@ -19,6 +19,8 @@ app.put('/user', function (req, res) {
 app.delete('/user', function (req, res) {
   res.send('Got a DELETE request at /user');
 });
+
+console.log('Current directory: ', __dirname);
 
 
 
