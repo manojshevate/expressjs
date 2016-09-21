@@ -6,6 +6,11 @@ const cluster = require('cluster');
 
 app.use('/static',express.static(__dirname + '/public/'));
 
+// REST API
+app.get('/api/list', function(req, res){
+	res.json({'name': 'Manoj Shevate', 'mobile': '+91 9960682190'});
+});
+
 // Routing
 app.get('/', function (req, res) {
   res.send('Hello World!');
