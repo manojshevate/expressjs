@@ -1,4 +1,5 @@
 var express = require('express');
+var constants = require('./src/constants');
 var app = express();
 const numCPUs = require('os').cpus().length;
 const cluster = require('cluster');
@@ -43,8 +44,8 @@ if (cluster.isMaster) {
     
 } else {
 	// Start Web server
-	app.listen(3000, function () {
-	  console.log('Example app listening on port 3000!');
+	app.listen(constants.port, function () {
+	  console.log('Example app listening on port',constants.port);
 	});
 }
 
