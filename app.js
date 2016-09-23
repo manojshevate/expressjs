@@ -1,5 +1,6 @@
 var express = require('express');
 var constants = require('./src/constants');
+var fs = require('fs');
 var app = express();
 const numCPUs = require('os').cpus().length;
 const cluster = require('cluster');
@@ -10,6 +11,18 @@ app.use('/static',express.static(__dirname + '/public/'));
 // REST API
 app.get('/api/list', function(req, res){
 	res.json({'name': 'Manoj Shevate', 'mobile': '+91 9960682190'});
+});
+
+app.get('/api/sample', function(req, res){
+	fs.readFile(__dirname+'/data/sample.json', 'utf8', function (err,data) {
+	  if (err) {
+	    return console.log(err);
+	  }
+	  else {
+	  	res.json(JSON.parse(data));
+	  }
+	  console.log(data);
+	});
 });
 
 // Routing
