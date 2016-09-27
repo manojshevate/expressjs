@@ -2,8 +2,11 @@ var express = require('express');
 var constants = require('./src/constants');
 var api = require('./src/api/test');
 var ui = require('./src/api/ui');
+var bodyParser = require('body-parser');
 
 var app = express();
+app.use(bodyParser.json());
+
 const numCPUs = require('os').cpus().length;
 const cluster = require('cluster');
 
