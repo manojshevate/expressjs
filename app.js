@@ -1,6 +1,6 @@
 var express = require('express');
 var constants = require('./src/constants');
-var api = require('./src/api/test');
+var api = require('./src/api/userApi');
 var ui = require('./src/api/ui');
 var bodyParser = require('body-parser');
 
